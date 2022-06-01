@@ -1,0 +1,65 @@
+server:
+  port: 8000
+
+spring:
+  profiles:
+    active: dev
+
+welcome:
+  message: Hello Sripiranavan
+
+---
+
+spring:
+  profiles: dev
+#  h2:
+#    console: true
+#  datasource:
+#    url: jdbc:h2:mem:sri
+#    driver-class-name: org.h2.Driver
+#    username: sa
+#    password: password
+#  jpa:
+#    database-platform: org.hibernate.dialect.H2Dialect
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  datasource:
+    url: jdbc:mysql://localhost:3306/db_spring_demo
+    username: springstudent
+    password: springstudent
+    driver-class-name: com.mysql.jdbc.Driver
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+        exclude: "env,beans"
+
+---
+spring:
+  profiles: qa
+  h2:
+    console: true
+  datasource:
+    url: jdbc:h2:mem:sri
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: password
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+
+---
+spring:
+  profiles: prod
+  h2:
+    console: true
+  datasource:
+    url: jdbc:h2:mem:sriprod
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: password
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
